@@ -1,0 +1,156 @@
+#include<stdio.h>
+void display(int ar[],int n);
+void insert(int ar[],int n);
+void delet(int ar[],int n);
+void search(int ar[],int n);
+void sort(int ar[],int n);
+void main()
+{
+ int cas,n,i,cn;
+ printf("enter no of elements:\n");
+ scanf("%d",&n);
+ int array[n];
+ 
+ printf("enter array elements\n");
+ for(i=0;i<n;i++)
+ {
+  scanf("%d",&array[i]);
+ }
+ do
+ {
+ printf("1.display.\n2.insertion.\n3.deletion.\n4.searching.\n5.sorting.\n");
+ printf("select function:\n");
+ scanf("%d",&cas);
+ 
+ switch(cas)
+ {
+  case 1:display(array,n);
+         break;
+  case 2:insert(array,n);
+         break;
+  case 3:delet(array,n);
+         break;
+  case 4:search(array,n);
+         break;
+  case 5:sort(array,n);
+         break;
+  default :printf("no options selected.\n");
+  
+ }
+ printf("do u want to continue:Y=1,N=0\n");
+ scanf("%d",&cn);
+ }while(cn==1);
+}
+
+void display(int ar[],int n)
+{
+  int i;
+  for(i=0;i<n;i++)
+  {
+   printf("%d\n",ar[i]);
+  }
+}
+
+void insert(int ar[],int n)
+{
+  int i,el,pos,j;
+  printf("Enter the element to be inserted:");
+  scanf("%d",&el);
+  printf("Enter the position:");
+  scanf("%d",&pos);
+  n=n+1;
+  for(i=n-1;i>=pos-1;i--)
+  {
+     ar[i+1]=ar[i];
+  }
+  ar[pos-1]=el;
+  for(j=0;j<n;j++)
+  {
+   printf("%d\n",ar[j]);
+  }
+}
+
+void delet(int ar[],int n)
+{ 
+
+  int x,i;
+  printf("Enter the position of the element to be deleted:");
+  scanf("%d",&x);
+  for(i=x;i<=n-1;i++)
+  ar[i]=ar[i+1];
+  n--;
+  for(i=0;i<=n;i++)
+  printf("%d\n",ar[i]);
+}
+
+void search(int ar[],int n)
+{
+ int i,el;
+ int x=0;
+ printf("enter the element to search:\n");
+ scanf("%d",&el);
+ for(i=0;i<=n;i++)
+ {
+  if(ar[i]!=el)
+    continue;
+  else
+  printf("element found at %d position\n",i+1);
+  x=1;
+ }
+ if(x==0)
+ printf("element not found\n");
+}
+
+void sort(int ar[], int n) 
+{
+    int temp;
+    for(int i = 0; i < n - 1; i++) {
+        for(int j = 0; j < n - 1 - i; j++) { 
+            if(ar[j] > ar[j + 1]) {
+                temp = ar[j + 1];
+                ar[j + 1] = ar[j];
+                ar[j] = temp;
+            }
+        }
+    }
+    for(int i=0;i<n;i++)
+  {
+   printf("%d\n",ar[i]);
+  }
+
+ }
+
+
+
+
+
+Shared preferences
+
+compulsory
+is a data on the device storage
+persisting data is a data and remain accessible and is a non volatile data
+
+Preferences means those feature choices that user makes and saves as a customized application to their likely 
+Shared preference is a light weight mechanism or a simple mechanism to store a non set values when storing ui states(favourites,stars , )
+storing user preferences (game level)
+application setting(theme setting) 
+
+to create or modify ahared preference call getShatredPreferences and it takes two parameters key,mode 
+SharedPreferences.Editor   EDitor class is used to write or edit SP 
+Once editing has been done commit it.Use commit() or apply()
+
+SP.onSharedPreferenceChangeListener  it is called when a SP is changed or added or removed 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
