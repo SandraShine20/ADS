@@ -82,9 +82,9 @@ void insert()
     else
     {
         // Between insert
-        int element;
-        printf("enter the element after which u have to insert the new element : ");
-        scanf("%d", &element);
+        int element, pos;
+        printf("enter the element position : ");
+        scanf("%d", &pos);
 
         if (head == NULL)
         {
@@ -94,13 +94,9 @@ void insert()
         else
         {
             temp = head;
-            while (temp->data != element)
+            for (int i = 1; i < pos - 1; i++)
             {
                 temp = temp->Next;
-                if (temp == NULL)
-                {
-                    printf("element not found\n");
-                }
             }
 
             if (temp->Next == NULL)
