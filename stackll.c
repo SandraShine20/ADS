@@ -7,6 +7,7 @@ typedef struct Node
 } node;
 
 node *top = NULL, *new, *temp, *prev;
+int n;
 
 void display()
 {
@@ -18,7 +19,6 @@ void display()
 
 void create()
 {
-    int n;
     printf("Enter Number of elements in stack : ");
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
@@ -40,8 +40,31 @@ void create()
     display();
 }
 
+int underflow()
+{
+    return (top == NULL) ? 1 : 0;
+}
+
+int Overflow()
+
+{
+    int count = 0;
+    temp = top;
+    while (temp != NULL)
+    {
+        count++;
+        temp = temp->Next;
+    }
+    return (count == n) ? 1 : 0;
+}
 void insert()
 {
+    if (Overflow()==1)
+    {
+    printf("stack overflow\n");
+    }
+    else
+    {
     new = (struct Node *)malloc(sizeof(struct Node));
     printf("Enter The data : ");
     scanf("%d", &new->data);
@@ -58,15 +81,23 @@ void insert()
         top = new;
     }
     display();
+    }
 }
 void delete()
 {
+    if (underflow() == 1)
+    {
+        printf("Stack Underflow\n");
+
+    }
+    else{
     // Top Delete
     temp = top;
     top = temp->Next;
     display();
 
     free(temp);
+    }
 }
 
 void search()
@@ -79,22 +110,25 @@ void search()
     {
         if (temp->data == srch)
         {
-            printf("The data is found in the LinkedList!");
+            printf("The data is found in the stack!");
             flag = 1;
             break;
         }
         temp = temp->Next;
     } while (temp != NULL);
     if (flag != 1)
-        printf("The Data is Not Found in the LinkedList!");
+        printf("The Data is Not Found in the stack!");
 }
+
 void main()
 {
     int c;
     while (1)
     {
-        printf("\n1. Create a stack\n2. Display the stack\n3. Insert Elements into the stack\n4. Delete \n5. Search a Data\n6. End\nChoose : ");
+        printf("\n0. Exit\n1. Create a stack\n2. Display the stack\n3. Insert Elements into the stack\n4. Delete \n5. Search a Data\nChoose : ");
         scanf("%d", &c);
+        if (c == 0)
+            break;
         switch (c)
         {
         case 1:
@@ -111,8 +145,6 @@ void main()
             break;
         case 5:
             search();
-            break;
-        case 6:
             break;
         default:
             printf("Instructions Unclear");
